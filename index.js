@@ -3,10 +3,13 @@ require("dotenv").config();
 
 const app = express();
 
-// ruta estatica
+// Directorio publico
 app.use(express.static("public"));
 
-//rutas dinamicas
+// Lectura y parseo del body
+app.use(express.json());
+
+// Rutas
 app.use("/api/auth", require("./routes/auth.routes"));
 
 app.listen(process.env.PORT || 4000, () => {

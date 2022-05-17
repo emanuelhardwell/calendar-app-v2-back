@@ -3,6 +3,8 @@ const { response } = require("express");
 const authObject = {};
 
 authObject.createUser = (req, res = response) => {
+  const { name, email, password } = req.body;
+
   res.json({
     ok: true,
     msg: "User created",
@@ -10,6 +12,8 @@ authObject.createUser = (req, res = response) => {
 };
 
 authObject.loginUser = (req, res = response) => {
+  const { email, password } = req.body;
+
   res.json({
     ok: true,
     msg: "User login",
