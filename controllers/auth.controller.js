@@ -86,10 +86,17 @@ authObject.loginUser = async (req, res = response) => {
   }
 };
 
-authObject.renewToken = (req, res = response) => {
+authObject.renewToken = async (req, res = response) => {
+  const uid = req.uid;
+  const name = req.name;
+
+  // generar el token
+  const token = await generateJWT(uid, name);
+
   res.json({
     ok: true,
     msg: "renew token",
+    token,
   });
 };
 
