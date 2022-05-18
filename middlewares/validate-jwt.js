@@ -13,12 +13,11 @@ const validateJWT = (req = response, res = response, next) => {
 
   try {
     const tokenVerify = jwt.verify(token, process.env.SECRET_JWT);
-    console.log(tokenVerify);
 
     req.uid = tokenVerify.uid;
     req.name = tokenVerify.name;
 
-    next();
+    // next();
   } catch (error) {
     console.log(error);
     res.status(500).json({
