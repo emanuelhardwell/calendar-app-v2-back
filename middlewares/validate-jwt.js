@@ -17,7 +17,7 @@ const validateJWT = (req = response, res = response, next) => {
     req.uid = tokenVerify.uid;
     req.name = tokenVerify.name;
 
-    // next();
+    next();
   } catch (error) {
     console.log(error);
     res.status(500).json({

@@ -90,14 +90,22 @@ authObject.renewToken = async (req, res = response) => {
   const uid = req.uid;
   const name = req.name;
 
-  // generar el token
-  const token = await generateJWT(uid, name);
+  try {
+    // generar el token
+    const token = await generateJWT(uid, name);
 
-  res.json({
-    ok: true,
-    msg: "renew token",
-    token,
-  });
+    res.json({
+      ok: true,
+      msg: "renew token",
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: "Comuniquese con el administrador!!",
+    });
+  }
 };
 
 module.exports = authObject;
