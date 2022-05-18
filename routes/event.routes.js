@@ -21,8 +21,8 @@ router.post(
   [
     check("title", "El titulo es necesario").not().isEmpty(),
     check("notes", "Las notas son necesarias").not().isEmpty(),
-    check("start", "La fecha inicial es necesaria").not().isEmpty(),
-    check("end", "La fecha final es necesaria").not().isEmpty(),
+    check("start", "La fecha inicial es necesaria").isISO8601().toDate(),
+    check("end", "La fecha final es necesaria").isISO8601().toDate(),
     validateFields,
   ],
   createEvent
@@ -34,8 +34,8 @@ router.put(
   [
     check("title", "El titulo es necesario").not().isEmpty(),
     check("notes", "Las notas son necesarias").not().isEmpty(),
-    check("start", "La fecha inicial es necesaria").not().isEmpty(),
-    check("end", "La fecha final es necesaria").not().isEmpty(),
+    check("start", "La fecha inicial es necesaria").isISO8601().toDate(),
+    check("end", "La fecha final es necesaria").isISO8601().toDate(),
     validateFields,
   ],
   updateEvent
