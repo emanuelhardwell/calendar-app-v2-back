@@ -40,13 +40,41 @@ authObject.createUser = async (req, res = response) => {
   }
 };
 
-authObject.loginUser = (req, res = response) => {
+authObject.loginUser = async (req, res = response) => {
   const { email, password } = req.body;
 
-  res.json({
-    ok: true,
-    msg: "User login",
-  });
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Este usuario no existe",
+      });
+    }
+
+    // comparar password
+    const comparePassword = bcrypt.compareSync(password, user.password);
+    if (!comparePassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: "La contraseña es incorrecta",
+      });
+    }
+
+    res.json({
+      ok: true,
+      msg: "login successfully",
+      uid: user._id,
+      name: user.name,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: "Comuniquese con el administrador!!",
+    });
+  }
 };
 
 authObject.renewToken = (req, res = response) => {
