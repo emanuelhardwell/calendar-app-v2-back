@@ -98,6 +98,8 @@ authObject.renewToken = async (req, res = response) => {
       ok: true,
       msg: "renew token",
       token,
+      uid,
+      name,
     });
   } catch (error) {
     console.log(error);
