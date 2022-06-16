@@ -58,7 +58,7 @@ eventObject.updateEvent = async (req, res = response) => {
     if (event.user.toJSON() !== req.uid) {
       return res.status(401).json({
         ok: false,
-        msg: "No tiene permisos para actualizar este evento",
+        msg: "No tiene permiso para actualizar este evento",
       });
     }
 
@@ -96,7 +96,7 @@ eventObject.deleteEvent = async (req, res = response) => {
     if (event.user.toJSON() !== req.uid) {
       return res.status(401).json({
         ok: false,
-        msg: "No tiene permisos para eliminar este evento",
+        msg: "No tiene permiso para eliminar este evento",
       });
     }
 

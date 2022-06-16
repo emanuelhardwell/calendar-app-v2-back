@@ -54,7 +54,7 @@ authObject.loginUser = async (req, res = response) => {
     if (!user) {
       return res.status(400).json({
         ok: false,
-        msg: "Este usuario no existe",
+        msg: "Usuario o contraseña incorrecta.",
       });
     }
 
